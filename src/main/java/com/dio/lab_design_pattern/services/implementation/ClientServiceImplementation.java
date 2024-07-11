@@ -7,9 +7,11 @@ import com.dio.lab_design_pattern.models.repositories.ClientRepository;
 import com.dio.lab_design_pattern.services.ClientService;
 import com.dio.lab_design_pattern.services.ViaCepService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ClientServiceImplementation implements ClientService {
     //  Singleton: Injetar os componentes do Spring com @Autowired.
     //  Dependence Injection
@@ -35,13 +37,13 @@ public class ClientServiceImplementation implements ClientService {
 
     @Override
     public void insert(Client client) {
-        saveClientWithCep(client);
+          saveClientWithCep(client);
     }
 
     @Override
     public void update(Long id, Client client) {
-        Optional<Client> clientBD = clientRepository.findById(id);
-        if (clientBD.isPresent()){
+        Optional<Client> clientDB = clientRepository.findById(id);
+        if (clientDB.isPresent()){
             saveClientWithCep(client);
         }
     }
